@@ -2,6 +2,7 @@ import express from "express"; // ES modules
 import csrf from 'csurf';
 import cookieParser from 'cookie-parser';
 import usuriosRoutes from "./routes/usuarioRoutes.js";
+import propiedadesRoutes from "./routes/propiedadesRoutes.js";
 import db from "./config/db.js";
 
 //const express = require('express'); // commonJS
@@ -38,7 +39,7 @@ app.use( express.static('public') );
 
 // Routing
 app.use('/auth', usuriosRoutes);
-
+app.use('/', propiedadesRoutes);
 
 
 

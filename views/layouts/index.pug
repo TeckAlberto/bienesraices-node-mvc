@@ -6,6 +6,8 @@ html(lang="es")
         title Buenes Raices | #{pagina} 
         link(rel="stylesheet", href="/css/app.css")
     body.min-h-screen.bg-gray-50
+        if barra
+            include header
 
-        main(class="mx-auto container mt-10 px-2")
+        main(class="container px-2 mx-auto mt-10")
             block contenido

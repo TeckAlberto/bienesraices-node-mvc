@@ -1,0 +1,55 @@
+extends ../layouts/index
+
+block contenido
+    div.py-10
+        h1.text-4xl.my-10.font-extrabold.text-center Bienes
+            span.font-normal Raices
+        h2.text-center.texto-2xl.font-extrabold=pagina
+
+        div(class="max-w-4xl px-4 py-8 mx-auto my-10 bg-white rounded shadow md:px-10")
+            form.space-y-2
+                div.space-y-5
+                    h3.text-lg.leading-6.font-medium.text-gray-900 
+                    p.text-gray-600 Agrega informacion sobre la propiedad en venta
+
+                    div 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="titulo") Titulo de anuncio
+                        input#titulo.w-full.px-3.py-2.border.border-gray300.rounded-md.placeholder-gray-400(placeholder="Titulo Propiedad, ej. Casa en la playa" type="text" name="titulo")
+                    
+                    div(class="space-y-5 md:flex md:gap-4 md:space-y-0")
+                    
+                        div(class="md:w-1/2") 
+                            label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="categoria") Categoria
+                            select#categoria.w-full.px-3.py-2.border.border-gray300.rounded-md.placeholder-gray-400(name="categoria")
+                                option(value="") --Seleccione --
+                        
+                        div(class="md:w-1/2") 
+                            label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="categoria") Precio
+                            select#precio.w-full.px-3.py-2.border.border-gray300.rounded-md.placeholder-gray-400(name="precio")
+                                option(value="") --Seleccione --
+                    
+                    div(class="space-y-5 md:flex md:gap-4 md:space-y-0")
+                    
+                        div(class="md:w-1/3") 
+                            label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="habitaciones") Habitaciones
+                            select#habitaciones.w-full.px-3.py-2.border.border-gray300.rounded-md.placeholder-gray-400(name="habitaciones")
+                                option(value="") --Seleccione --
+                                - var n = 1;
+                                    while n < 7
+                                        option(value=n ) #{n++} 
+                        
+                        div(class="md:w-1/3") 
+                            label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="estacionamiento") Estacionamiento
+                            select#estacionamiento.w-full.px-3.py-2.border.border-gray300.rounded-md.placeholder-gray-400(name="estacionamiento")
+                                option(value="") --Seleccione --
+                                - var n = 1;
+                                    while n < 4
+                                        option(value=n ) #{n++} 
+                        
+                        div(class="md:w-1/3") 
+                            label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="wc") Wc
+                            select#wc.w-full.px-3.py-2.border.border-gray300.rounded-md.placeholder-gray-400(name="wc")
+                                option(value="") --Seleccione --
+                                - var n = 1;
+                                    while n < 5
+                                        option(value=n ) #{n++} 

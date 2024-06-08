@@ -1,5 +1,8 @@
 extends ../layouts/index
 
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
 block contenido
     div.py-10
         h1.text-4xl.my-10.font-extrabold.text-center Bienes
@@ -10,7 +13,7 @@ block contenido
         div(class="max-w-4xl px-4 py-8 mx-auto my-10 bg-white rounded shadow md:px-10")
             form.space-y-2
                 div.space-y-5
-                    h3.text-lg.leading-6.font-medium.text-gray-900 
+                    h3.text-lg.leading-6.font-medium.text-gray-900 Informacion General
                     p.text-gray-600 Agrega informacion sobre la propiedad en venta
 
                     div 
@@ -54,6 +57,19 @@ block contenido
                                 - var n = 1;
                                     while n < 5
                                         option(value=n ) #{n++} 
+                    div.border-gray-600.border-t.py-5.space-y-5  
+                        h3.text-lg.leading-6.font-medium.text-gray-900 Ubicacion
+                        p.text-gray-600 Ubica la Propiedad en el Mapa
+                        #mapa.h-96
+
+                        div 
+                            p.calle
+                        input(type="hidden" name="calle" id="calle")
+                        input(type="hidden" name="lat" id="lat")
+                        input(type="hidden" name="lng" id="lng")
+
+
+
 
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

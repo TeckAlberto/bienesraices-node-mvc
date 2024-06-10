@@ -12,7 +12,7 @@ const Propiedad = db.define("propiedades", {
     type: DataTypes.STRING(100),
     allowNull: false,
   },
-  description: {
+  descripcion: {
     type: DataTypes.TEXT,
     allowNull: false,
   },

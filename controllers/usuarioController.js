@@ -40,7 +40,7 @@ const autenticar = async (req, res) => {
     return res.render("auth/login", {
       pagina: "Iniciar Sesion",
       csrfToken: req.csrfToken(),
-      errores: [{mgs: 'El usuario no existe'}],
+      errores: [{msg: 'El usuario no existe'}],
     });
   }
 
@@ -49,7 +49,7 @@ const autenticar = async (req, res) => {
     return res.render("auth/login", {
       pagina: "Iniciar Sesion",
       csrfToken: req.csrfToken(),
-      errores: [{ mgs: "Tu cuenta no ha sido confirmada" }],
+      errores: [{ msg: "Tu cuenta no ha sido confirmada" }],
     });
   }
 

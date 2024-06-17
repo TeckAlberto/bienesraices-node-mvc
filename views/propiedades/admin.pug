@@ -31,7 +31,7 @@ block contenido
                                     form(action="" method="")
                                         input(type="submit" class=`w-full px-2 py-2 md:py-1 ${propiedad.publicado ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'} font-semibold rounded cursor-pointer text-xs leading-5` value=`${propiedad.publicado ? 'Publicado' : 'No publicado'} `)
                                    
-                                    a(class="w-full px-2 py-2 text-xs font-semibold leading-5 text-center text-indigo-800 bg-indigo-100 rounded cursor-pointer md:py-1") Editar
+                                    a(href=`/propiedades/editar/${propiedad.id}` class="w-full px-2 py-2 text-xs font-semibold leading-5 text-center text-indigo-800 bg-indigo-100 rounded cursor-pointer md:py-1") Editar
 
                                     form(action="" method="")
                                         input(type="submit" class=`w-full px-2 py-2 md:py-1 bg-red-100 text-red-800 font-semibold rounded cursor-pointer text-xs leading-5` value="Eliminar")

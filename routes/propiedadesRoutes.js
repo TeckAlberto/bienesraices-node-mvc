@@ -1,6 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { admin, agregarImagen, almacenarImagen, crear, guardar } from '../controllers/propiedadController.js';
+import { admin, agregarImagen, almacenarImagen, crear, editar, guardar, guardarCambios } from '../controllers/propiedadController.js';
 import protegerRuta from '../middleware/protegerRuta.js';
 import upload from '../middleware/subirArchivo.js';
 
@@ -33,6 +33,35 @@ router.post(
   upload.single("imagen"),
   almacenarImagen
 );
+
+
+router.get('/propiedades/editar/:id', 
+  protegerRuta,
+  editar
+);
+
+router.post(
+  "/propiedades/editar/:id",
+  protegerRuta,
+  body("titulo").notEmpty().withMessage("El titulo del anuncion es obligado"),
+  body("descripcion")
+    .notEmpty()
+    .withMessage("La descripcion no puede ir vacia")
+    .isLength({ max: 200 })
+    .withMessage("La descripcion es muy larga"),
+  body("categoria").isNumeric().withMessage("Selecciona una catagoria"),
+  body("precio").isNumeric().withMessage("Selecciona un rango de Precios"),
+  body("habitaciones")
+    .isNumeric()
+    .withMessage("Selecciona la cantidad de habitaciones"),
+  body("estacionamiento")
+    .isNumeric()
+    .withMessage("Selecciona la cantidad de estacionamientos"),
+  body("wc").isNumeric().withMessage("Selecciona la cantidad de banios"),
+  body("lat").notEmpty().withMessage("Ubica la propiedad en el mapa"),
+  guardarCambios
+);
+
 
 
 

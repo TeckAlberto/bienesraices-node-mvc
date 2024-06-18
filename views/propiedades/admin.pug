@@ -6,7 +6,7 @@ block contenido
             span.font-normal Raices
         h2.text-center.texto-2xl.font-extrabold=pagina
 
-        a(href="/propiedades/crear" class="inline-block w-full px-3 py-2 my-5 text-sm font-bold text-center text-white uppercase bg-indigo-600 rounded sm:w-auto hover:bg-indigo-700") Publicar Propidad
+        a(href="/propiedades/crear" class="inline-block w-full px-3 py-2 my-5 text-sm font-bold text-center text-white uppercase bg-indigo-600 rounded sm:w-auto hover:bg-indigo-700") Publicar Propiedad
 
         if propiedades.length > 0
             div(class="bg-white rounded-lg shadow")
@@ -33,7 +33,8 @@ block contenido
                                    
                                     a(href=`/propiedades/editar/${propiedad.id}` class="w-full px-2 py-2 text-xs font-semibold leading-5 text-center text-indigo-800 bg-indigo-100 rounded cursor-pointer md:py-1") Editar
 
-                                    form(action="" method="")
+                                    form(action=`/propiedades/eliminar/${propiedad.id}` method="POST")
+                                        input(type="hidden" name="_csrf" value=csrfToken)
                                         input(type="submit" class=`w-full px-2 py-2 md:py-1 bg-red-100 text-red-800 font-semibold rounded cursor-pointer text-xs leading-5` value="Eliminar")
                                     
         

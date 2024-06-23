@@ -15,9 +15,9 @@ block contenido
                         li
                             div(class="flex flex-col w-full gap-4 p-6 space-y-8 md:space-y-0 sm:flex-row sm:items-center sm:justify-between")
                                 div(class="sm:w-1/4 md:w-1/6") 
-                                    img(src=`uploads/${propiedad.imagen}` alt=`Imagen Propiedad ${propiedad.titulo}` class="block w-full")
+                                    img(src=`${propiedad.imagen ? "uploads/" + propiedad.imagen : "default/image_default.jpg"}` alt=`Imagen Propiedad ${propiedad.titulo}` class="block w-full")
                                 div(class="space-y-3 sm:w-2/4 md:w-3/6 lg:w-4/6")
-                                    a(href=`#` class="block text-2xl font-extrabold text-indigo-600 truncate")=propiedad.titulo
+                                    a(href=`/propiedad/${propiedad.id}` class="block text-2xl font-extrabold text-indigo-600 truncate")=propiedad.titulo
 
                                     p(class="text-sm text-black text-bold")=propiedad.categoria.nombre
 

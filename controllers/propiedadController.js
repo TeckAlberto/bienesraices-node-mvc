@@ -4,29 +4,66 @@ import { Precio, Categoria, Propiedad } from '../models/index.js';
 
 const admin = async (req, res) => {
 
-    const { id } = req.usuario;
+  
+  // Leer query string
+  const { pagina: paginaActual } = req.query;
+  
+  const regex = /^[1-9]$/;
+  
+  if(!regex.test(paginaActual)) {
+    return res.redirect('/mis-propiedades?pagina=1')
+  }
+  
+  try {
+      
+      const { id } = req.usuario;
+      
+      // Limites y Offset para el paginador
+      const limit = 5;
+      const offset = (paginaActual * limit) - limit;
 
-    const propiedades = await Propiedad.findAll({
-      where: {
-        usuarioId: id,
-      },
-      include: [
-        {
-            model: Categoria,
-            as: "categoria",
-        },
-        {
-            model: Precio,
-            as: 'precio'
-        }
-      ],
-    });
+      const [propiedades, total] = await Promise.all([
+        Propiedad.findAll({
+          limit,
+          offset,
+          where: {
+            usuarioId: id,
+          },
+          include: [
+            {
+              model: Categoria,
+              as: "categoria",
+            },
+            {
+              model: Precio,
+              as: "precio",
+            },
+          ],
+        }),
+        Propiedad.count({
+          where: {
+            usuarioId: id
+          }
+        })
+      ]);
 
-    res.render("propiedades/admin", {
-      pagina: "Mis propiedades",
-      propiedades,
-      csrfToken: req.csrfToken(),
-    });
+
+
+      res.render("propiedades/admin", {
+        pagina: "Mis propiedades",
+        propiedades,
+        csrfToken: req.csrfToken(),
+        paginaActual: Number(paginaActual),
+        paginas: Math.ceil(total / limit),
+        offset,
+        limit,
+        total,
+      });  
+    } catch (err) {
+      console.error(err);
+    }
+
+    
 }
 
 // Formulario para crear un registro de propiedad
@@ -165,7 +202,6 @@ const editar = async (req, res) => {
     const { id } = req.params;
     // Validar que la propiedad exista
     const propiedad = await Propiedad.findByPk(id);
-    console.log(propiedad);
     if(!propiedad) {
         return res.redirect('/mis-propiedades');
     }
@@ -214,7 +250,6 @@ const guardarCambios = async (req, res) => {
     const { id } = req.params;
     // Validar que la propiedad exista
     const propiedad = await Propiedad.findByPk(id);
-    console.log(propiedad);
     if (!propiedad) {
       return res.redirect("/mis-propiedades");
     }
@@ -268,7 +303,6 @@ const eliminar = async (req, res) => {
     const { id } = req.params;
     // Validar que la propiedad exista
     const propiedad = await Propiedad.findByPk(id);
-    console.log(propiedad);
     if (!propiedad) {
       return res.redirect("/mis-propiedades");
     }

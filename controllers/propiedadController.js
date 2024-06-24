@@ -283,7 +283,7 @@ const eliminar = async (req, res) => {
 
     // Eliminar la Propiedad
     await propiedad.destroy();
-    res.redirect('mis-propiedades');
+    res.redirect('/mis-propiedades');
 }
 
 // Muestra una propiedad

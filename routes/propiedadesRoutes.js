@@ -56,7 +56,7 @@ router.post(
     .withMessage("Selecciona la cantidad de habitaciones"),
   body("estacionamiento")
     .isNumeric()
-    .withMessage("Selecciona la cantidad de estacionamientos"),
+    .withMessage("Selecciona la cantidasd de estacionamientos"),
   body("wc").isNumeric().withMessage("Selecciona la cantidad de banios"),
   body("lat").notEmpty().withMessage("Ubica la propiedad en el mapa"),
   guardarCambios

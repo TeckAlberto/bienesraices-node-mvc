@@ -3,6 +3,8 @@ import csrf from 'csurf';
 import cookieParser from 'cookie-parser';
 import usuriosRoutes from "./routes/usuarioRoutes.js";
 import propiedadesRoutes from "./routes/propiedadesRoutes.js";
+import appRoutes from './routes/appRoutes.js';
+import apiRoutes from './routes/apiRoutes.js'
 import db from "./config/db.js";
 
 //const express = require('express'); // commonJS
@@ -39,7 +41,9 @@ app.use( express.static('public') );
 
 // Routing
 app.use('/auth', usuriosRoutes);
+app.use('/', appRoutes);
 app.use('/', propiedadesRoutes);
+app.use('/api', apiRoutes);
 
 
 

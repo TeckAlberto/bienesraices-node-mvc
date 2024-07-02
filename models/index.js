@@ -1,18 +1,15 @@
-import Propiedad from './Propiedad.js';
-import Precio from './Precio.js';
-import Categoria from './Categoria.js';
-import Usuario from './Usuario.js';
+import Propiedad from "./Propiedad.js";
+import Precio from "./Precio.js";
+import Categoria from "./Categoria.js";
+import Usuario from "./Usuario.js";
+import Mensaje from "./Mensaje.js";
 
+Propiedad.belongsTo(Precio, { foreignKey: "precioId" });
+Propiedad.belongsTo(Categoria, { foreignKey: "categoriaId" });
+Propiedad.belongsTo(Usuario, { foreignKey: "usuarioId" });
+Propiedad.hasMany(Mensaje, { foreignKey: "propiedadId" });
 
-Propiedad.belongsTo(Precio);
-Propiedad.belongsTo(Categoria);
-Propiedad.belongsTo(Usuario);
+Mensaje.belongsTo(Propiedad, { foreignKey: "propiedadId" });
+Mensaje.belongsTo(Usuario, { foreignKey: "usuarioId" });
 
-// Usuario.hasMany(Propiedad);
-
-export {
-    Propiedad,
-    Precio,
-    Categoria,
-    Usuario,
-}
+export { Propiedad, Precio, Categoria, Usuario, Mensaje };
